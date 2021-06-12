@@ -1,8 +1,12 @@
 
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import StockRow from './components/StockRow.js';
+
+
 let stock="aapl";
-const url=`https://cloud.iexapis.com/stable/stock/${stock}/quote?token=pk_5600d65a8fcc45418dcb19281fc77e47`
+const url=`https://cloud.iexapis.com/stable/stock/${stock}/quote?token=pk_5600d65a8fcc45418dcb19281fc77e47`;
+
 
 const fetchRequest = async (url)=>{
   try{
@@ -31,6 +35,12 @@ function App() {
                 <th>Time</th>
               </tr>
             </thead>
+            <tbody>
+              <StockRow ticker={"aapl"}/>
+              <StockRow ticker={"goog"}/>
+              <StockRow ticker={"msft"}/>
+              <StockRow ticker={"tsla"}/>
+            </tbody>
           </table>
         </div>
       </div>
