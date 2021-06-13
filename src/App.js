@@ -3,22 +3,6 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import StockRow from './components/StockRow.js';
 
-
-let stock="aapl";
-const url=`https://cloud.iexapis.com/stable/stock/${stock}/quote?token=pk_5600d65a8fcc45418dcb19281fc77e47`;
-
-
-const fetchRequest = async (url)=>{
-  try{
-    let response = await fetch(url);
-    let data = await response.json();
-    return data;
-  } catch(err){
-    console.log(err)
-    return err;
-  }
-}
-
 function App() {
   return (
       <div className={'app'}>
