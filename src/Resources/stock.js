@@ -13,7 +13,6 @@ export class stock{
         return `https://cloud.iexapis.com/stable/stock/${ticker}/quote?token=${iexData.apiToken}`
     }
     formatStock = (data)=> {
-        console.log(data);
         const formattedData = {}
         formattedData.price=data.latestPrice;
         formattedData.date = data.latestTime;
