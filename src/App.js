@@ -17,7 +17,6 @@ function App() {
                         <StockRow ticker="goog"/>
                         <StockRow ticker="msft"/>
                         <StockRow ticker="rblx"/>
-                        <StockRow ticker="msft"/>
                     </ul>
                 </div>
 
