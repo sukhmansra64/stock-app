@@ -5,7 +5,7 @@ export class stock{
         const fetchFunction = async (ticker, callBack)=>{
             const response = await fetch(this.stockUrl(ticker));
             const data = await response.json();
-            await callBack(await this.formatStock(data, await this.getYesterdayInfo(ticker)));
+            await callBack(await this.formatStock(data,await this.getYesterdayInfo(ticker)));
         }
         fetchFunction(ticker,callBack);
     }
@@ -18,6 +18,8 @@ export class stock{
         formattedData.date = data.latestTime;
         formattedData.time = this.time(data.latestUpdate);
         formattedData.yesterdayClose = yesterData.close;
+        formattedData.dollarChange = data.latestPrice-yesterData.close;
+        formattedData.percentChange = ((data.latestPrice-yesterData.close)/yesterData.close)*100;
         return formattedData;
     }
     time = (time)=>{
@@ -38,7 +40,7 @@ export class stock{
         return fetchFunction(ticker);
     }
     yesterdayUrl = (ticker)=>{
-        return `https://cloud.iexapis.com/stable/stock/${ticker}/previous?chartLast=1&token=${iexData.apiToken}`
+        return `https://cloud.iexapis.com/stable/stock/${ticker}/previous?&token=${iexData.apiToken}`
     }
 
 }
