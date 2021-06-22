@@ -28,7 +28,6 @@ class StockRow extends Component{
     }
     componentDidMount() {
         let aStock = new stock(this.props.ticker,this.applyData.bind(this));
-        aStock.getYesterdayInfo(this.props.ticker,this.applyData.bind(this));
     }
     changeStyle(){
         if(this.state.dollarChange>0){

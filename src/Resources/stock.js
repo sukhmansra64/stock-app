@@ -5,21 +5,21 @@ export class stock{
         const fetchFunction = async (ticker, callBack)=>{
             const response = await fetch(this.stockUrl(ticker));
             const data = await response.json();
-            await callBack(await this.formatStock(data,await this.getYesterdayInfo(ticker)));
+            await callBack(await this.formatStock(data));
         }
         fetchFunction(ticker,callBack);
     }
     stockUrl = (ticker)=>{
         return `https://cloud.iexapis.com/stable/stock/${ticker}/quote?token=${iexData.apiToken}`
     }
-    formatStock = (data, yesterData)=> {
+    formatStock = (data)=> {
         const formattedData = {}
-        formattedData.price=data.latestPrice;
-        formattedData.date = data.latestTime;
+        formattedData.price=(data.latestPrice).toFixed(2);
+        formattedData.date = (data.latestTime);
         formattedData.time = this.time(data.latestUpdate);
-        formattedData.yesterdayClose = yesterData.close;
-        formattedData.dollarChange = data.latestPrice-yesterData.close;
-        formattedData.percentChange = ((data.latestPrice-yesterData.close)/yesterData.close)*100;
+        formattedData.yesterdayClose = (data.previousClose).toFixed(2);
+        formattedData.dollarChange = (data.change).toFixed(2);
+        formattedData.percentChange = ((data.changePercent)*100).toFixed(2);
         return formattedData;
     }
     time = (time)=>{
@@ -30,17 +30,4 @@ export class stock{
         let formattedTime = hours+':'+minutes.substr(-2)+':'+seconds.substr(-2);
         return(formattedTime);
     }
-    getYesterdayInfo = (ticker)=>{
-
-        const fetchFunction = async (ticker)=>{
-            const response = await fetch(this.yesterdayUrl(ticker));
-            const data = await response.json();
-            return  await data;
-        }
-        return fetchFunction(ticker);
-    }
-    yesterdayUrl = (ticker)=>{
-        return `https://cloud.iexapis.com/stable/stock/${ticker}/previous?&token=${iexData.apiToken}`
-    }
-
 }
