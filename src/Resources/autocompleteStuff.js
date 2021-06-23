@@ -1,16 +1,16 @@
-import {iexData} from "../iexSourceStuff/iexSourceData";
+import {iexData} from "../iexSourceStuff/SourceData";
 
 export class autocompleteData{
-    constructor(callback) {
+    fetchData(callback,keywords) {
         const fetchFunction = async (callBack)=>{
-            const response = await fetch(this.stockUrl());
+            const response = await fetch(this.stockUrl(keywords));
             const data = await response.json();
             await callBack(await data);
         }
         fetchFunction(callback);
     }
-    stockUrl=()=>{
-        return `https://cloud.iexapis.com/stable/ref-data/symbols?token=${iexData.apiToken}`
+    stockUrl=(keywords)=>{
+        return `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${keywords}&apikey=${iexData.apiToken}`
     }
     filter(array, key, value){
         let i, j, filtered = [], item;

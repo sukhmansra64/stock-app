@@ -20,7 +20,6 @@ class StockRow extends Component{
         this.setState({
             price: data.price,
             date: data.date,
-            time: data.time,
             yesterdayClose: data.yesterdayClose,
             dollarChange: data.dollarChange,
             percentChange: data.percentChange

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {Button, Col, Form, Row} from "react-bootstrap";
 import {autocompleteData} from "../Resources/autocompleteStuff";
+import StockRow from "./StockRow";
 
 class WackyForm extends Component{
     constructor() {
@@ -10,7 +11,7 @@ class WackyForm extends Component{
             data: null,
             autocomplete: null,
         }
-        this.autoFinish = new autocompleteData(this.applyData.bind(this));
+        this.autoFinish = new autocompleteData();
     }
     applyData(data){
         this.setState({
@@ -22,8 +23,8 @@ class WackyForm extends Component{
     }
     handleChange = (evt)=>{
         this.setState({input: evt.target.value});
-        this.setState({autocompete: this.autoFinish.filter(this.state.data,"name",this.state.input.toLowerCase())})
-        console.log(this.state.autocompete);
+        this.autoFinish.fetchData(this.applyData.bind(this),this.state.input)
+        console.log(this.state.data);
     }
     handleClick = (button) =>{
         button.preventDefault();
