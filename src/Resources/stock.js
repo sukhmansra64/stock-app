@@ -11,15 +11,18 @@ export class stock{
         fetchFunction(ticker,callBack);
     }
     stockUrl = (ticker)=>{
+        //refactor
         return `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${ticker}&apikey=${iexData.apiToken}`
     }
     formatStock = (data)=> {
+        //refactor this whole thing
         const formattedData = {}
-        formattedData.price=(parseFloat(data["Global Quote"]["05. price"]));
+        formattedData.price=((parseFloat(data["Global Quote"]["05. price"])).toFixed(2));
         formattedData.date = (data["Global Quote"]["07. latest trading day"]);
-        formattedData.yesterdayClose = parseFloat(data["Global Quote"]["08. previous close"]);
-        formattedData.dollarChange = parseFloat(data["Global Quote"]["09. change"]);
-        formattedData.percentChange = (parseFloat(data["Global Quote"]["10. change percent"]));
+        formattedData.yesterdayClose = (parseFloat(data["Global Quote"]["08. previous close"])).toFixed(2);
+        formattedData.dollarChange = (parseFloat(data["Global Quote"]["09. change"])).toFixed(2);
+        formattedData.percentChange = (parseFloat(data["Global Quote"]["10. change percent"])).toFixed(2);
+        console.log(data);
         return formattedData;
     }
 
