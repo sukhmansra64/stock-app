@@ -1,4 +1,3 @@
 export const iexData={
-    //refactor
-    apiToken: 'DFJ8M7C3GJJXX5Q0',
+    apiToken: 'pk_5600d65a8fcc45418dcb19281fc77e47 ',
 }

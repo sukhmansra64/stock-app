@@ -10,7 +10,7 @@ export class autocompleteData{
         fetchFunction(callback);
     }
     stockUrl=(keywords)=>{
-        return `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${keywords}&apikey=${iexData.apiToken}`
+        return `https://cloud.iexapis.com/stable/search/${keywords}?token=${iexData.apiToken}`
     }
     filter(array, key, value){
         let i, j, filtered = [], item;

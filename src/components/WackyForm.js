@@ -16,21 +16,22 @@ class WackyForm extends Component{
     }
     applyData(data){
         this.setState({
-            //refactor
-            data: data["bestMatches"]
+            data: data
         })
     }
     componentDidMount() {
         this.handleChange=this.handleChange.bind(this);
     }
     handleChange = (evt)=>{
-        //refactor this whole thing
+        if(this.state.input.length<0){
+            this.state.isTyping=false;
+            this.state.isLoaded=false
+        }
         this.setState({input: evt.target.value});
         this.autoFinish.fetchData(this.applyData.bind(this),this.state.input)
-        console.log(this.state.data);
         let arr = Object.assign([],this.state.data);
         if(arr[0]){
-            if("1. symbol" in arr[0]){
+            if("name" in arr[0]){
                 this.setState({isLoaded:true})
             }
         }
@@ -41,12 +42,12 @@ class WackyForm extends Component{
         else{
             this.setState({isTyping: false});
         }
-        console.log(this.state.isTyping);
     }
     handleClick = (button) =>{
         button.preventDefault();
         alert(this.state.input);
     }
+
     render() {
         return(
             <div className="container-fluid" >
@@ -61,10 +62,9 @@ class WackyForm extends Component{
                                 {this.state.isTyping&&
                                 <div className='card'>
                                         <ul className='list-group list-group-flush'>
-                                            {/*refactor this*/}
                                             {this.state.isTyping&&
                                             ((this.state.data).map((data,key)=>{
-                                                return(<StockRow key={key} ticker={data["1. symbol"]}/>)
+                                                return(<StockRow key={key} name={data["name"]} ticker={data["symbol"]}/>)
                                             }))
                                             }
                                         </ul>
