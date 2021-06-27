@@ -19,6 +19,11 @@ class WackyForm extends Component{
             data: data
         })
     }
+    applyInput(ticker){
+        this.setState({
+            input: ticker
+        })
+    }
     componentDidMount() {
         this.handleChange=this.handleChange.bind(this);
     }
@@ -64,7 +69,7 @@ class WackyForm extends Component{
                                         <ul className='list-group list-group-flush'>
                                             {this.state.isTyping&&
                                             ((this.state.data).map((data,key)=>{
-                                                return(<StockRow key={key} name={data["name"]} ticker={data["symbol"]}/>)
+                                                return(<StockRow key={key} name={data["name"]} ticker={data["symbol"]} callBack={this.applyInput.bind(this)}/>)
                                             }))
                                             }
                                         </ul>

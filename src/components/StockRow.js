@@ -45,11 +45,10 @@ class StockRow extends Component{
                 marginLeft: 5}
         }
     }
-
     render(){
         let aStock = new stock(this.props.ticker,this.applyData.bind(this));
         return(
-            <li className="list-group-item btn btn-primary">
+            <li className="list-group-item btn btn-primary" onClick={()=>{this.props.callBack(this.props.ticker)}}>
                 <b>{this.props.name}</b> ({this.props.ticker}) ({this.state.exchange}) ${this.state.price}
                 <span className="change" style={this.changeStyle()}>
                     ${`${this.state.dollarChange}`}  ({`${this.state.percentChange}`})%
