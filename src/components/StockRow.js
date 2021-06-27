@@ -49,7 +49,7 @@ class StockRow extends Component{
     render(){
         let aStock = new stock(this.props.ticker,this.applyData.bind(this));
         return(
-            <li className="list-group-item">
+            <li className="list-group-item btn btn-primary">
                 <b>{this.props.name}</b> ({this.props.ticker}) ({this.state.exchange}) ${this.state.price}
                 <span className="change" style={this.changeStyle()}>
                     ${`${this.state.dollarChange}`}  ({`${this.state.percentChange}`})%
