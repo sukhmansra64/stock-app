@@ -47,8 +47,14 @@ class StockRow extends Component{
     }
     render(){
         let aStock = new stock(this.props.ticker,this.applyData.bind(this));
+        let applyInput = this.props.callBack;
+        let submitForm = this.props.onClick;
+        let handleClick = (button)=>{
+            applyInput(this.props.ticker);
+            submitForm(button);
+        }
         return(
-            <li className="list-group-item btn btn-primary" onClick={()=>{this.props.callBack(this.props.ticker)}}>
+            <li className="list-group-item btn btn-primary" onClick={handleClick}>
                 <b>{this.props.name}</b> ({this.props.ticker}) ({this.state.exchange}) ${this.state.price}
                 <span className="change" style={this.changeStyle()}>
                     ${`${this.state.dollarChange}`}  ({`${this.state.percentChange}`})%

@@ -13,6 +13,9 @@ class WackyForm extends Component{
             isTyping: false
         }
         this.autoFinish = new autocompleteData();
+        this.handleChange=this.handleChange.bind(this);
+        this.applyInput=this.applyInput.bind(this);
+        this.handleList=this.handleList.bind(this);
     }
     applyData(data){
         this.setState({
@@ -24,9 +27,7 @@ class WackyForm extends Component{
             input: ticker
         })
     }
-    componentDidMount() {
-        this.handleChange=this.handleChange.bind(this);
-    }
+
     handleChange = (evt)=>{
         if(this.state.input.length<0){
             this.state.isTyping=false;
@@ -52,7 +53,10 @@ class WackyForm extends Component{
         button.preventDefault();
         alert(this.state.input);
     }
-
+    handleList=(button)=>{
+        button.preventDefault();
+        alert(this.state.input);
+    }
     render() {
         return(
             <div className="container-fluid" >
@@ -69,7 +73,7 @@ class WackyForm extends Component{
                                         <ul className='list-group list-group-flush'>
                                             {this.state.isTyping&&
                                             ((this.state.data).map((data,key)=>{
-                                                return(<StockRow key={key} name={data["name"]} ticker={data["symbol"]} callBack={this.applyInput.bind(this)}/>)
+                                                return(<StockRow key={key} name={data["name"]} ticker={data["symbol"]} callBack={this.applyInput} onClick={this.handleList}/>)
                                             }))
                                             }
                                         </ul>
