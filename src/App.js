@@ -11,7 +11,7 @@ function App() {
         <div className={'container'}>
           <h1>Sukhman Sra's Stock App</h1>
         </div>
-            <StockInfoDisplay/>
+            <StockInfoDisplay ticker='IBM'/>
         </div>
   );
 }
