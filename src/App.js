@@ -11,7 +11,9 @@ function App() {
         <div className={'container'}>
           <h1>Sukhman Sra's Stock App</h1>
         </div>
-            <StockInfoDisplay ticker='IBM'/>
+          <div className='d-flex align-content-center'>
+              <StockInfoDisplay ticker='IBM'/>
+          </div>
         </div>
   );
 }

@@ -4,8 +4,8 @@ import {autocompleteData} from "../Resources/autocompleteStuff";
 import StockRow from "./StockRow";
 
 class WackyForm extends Component{
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state={
             input: '',
             data: [],

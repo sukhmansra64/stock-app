@@ -20,7 +20,19 @@ export class stock{
         if(data["change"]){formattedData.dollarChange = (data["change"]).toFixed(2);}
         if(data["changePercent"]){formattedData.percentChange = (data["changePercent"]).toFixed(2);}
         formattedData.exchange = (data["primaryExchange"])
+        if(data["close"]){formattedData.close=(data["close"]).toFixed(2);}
+        if(data["open"]){formattedData.open=(data["open"]).toFixed(2);}
+        if(data["high"]){formattedData.high=(data["high"]).toFixed(2);}
+        if(data["low"]){formattedData.low=(data["low"]).toFixed(2);}
+        formattedData.time = this.time(data.latestUpdate);
         return formattedData;
     }
-
+    time(time){
+        let date = new Date(time * 1000);
+        let hours = date.getHours();
+        let minutes = "0" + date.getMinutes();
+        let seconds = "0" + date.getSeconds();
+        let formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+        return formattedTime;
+    }
 }
