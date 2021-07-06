@@ -54,7 +54,7 @@ class StockRow extends Component{
             submitForm(button);
         }
         return(
-            <li className="list-group-item btn btn-primary" onClick={handleClick}>
+            <li className="list-group-item btn btn-dark" onClick={handleClick}>
                 <b>{this.props.name}</b> ({this.props.ticker}) ({this.state.exchange}) ${this.state.price}
                 <span className="change" style={this.changeStyle()}>
                     ${`${this.state.dollarChange}`}  ({`${this.state.percentChange}`})%
