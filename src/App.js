@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import WackyForm from "./components/WackyForm";
 import StockRow from "./components/StockRow";
 import StockInfoDisplay from "./components/StockInfoDisplay";
-
+//lol just for a commit dont have time today unfortunately
 function App() {
   return (
       <div className={'app'}>
@@ -12,7 +12,7 @@ function App() {
           <h1>Sukhman Sra's Stock App</h1>
         </div>
           <div className='d-flex align-content-center'>
-              <StockInfoDisplay ticker='IBM'/>
+              <WackyForm/>
           </div>
         </div>
   );
