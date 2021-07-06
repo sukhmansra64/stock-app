@@ -53,7 +53,11 @@ class StockInfoDisplay extends Component{
     }
     render() {
         return(
+
             <div className='container container-fluid'>
+                <div className='btn btn-dark' onClick={this.props.callback}>
+                    Back
+                </div>
                 <Row>
                     <Col>
                         <Plot

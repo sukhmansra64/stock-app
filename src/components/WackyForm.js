@@ -23,9 +23,7 @@ class WackyForm extends Component{
         })
     }
     applyInput(ticker){
-        this.setState({
-            input: ticker
-        })
+        this.props.callback(ticker);
     }
 
     handleChange = (evt)=>{
@@ -51,11 +49,10 @@ class WackyForm extends Component{
     }
     handleClick = (button) =>{
         button.preventDefault();
-        alert(this.state.input);
+        this.props.callback(this.state.input);
     }
     handleList=(button)=>{
         button.preventDefault();
-        alert(this.state.input);
     }
     render() {
         return(
@@ -70,7 +67,7 @@ class WackyForm extends Component{
                             <div className="col">
                                 {this.state.isTyping&&
                                 <div className='card'>
-                                        <ul className='list-group list-group-flush'>
+                                        <ul style={{height: 200, overflow: 'auto'}} className='list-group list-group-flush'>
                                             {this.state.isTyping&&
                                             ((this.state.data).map((data,key)=>{
                                                 return(<StockRow key={key} name={data["name"]} ticker={data["symbol"]} callBack={this.applyInput} onClick={this.handleList}/>)
@@ -83,7 +80,7 @@ class WackyForm extends Component{
                         </Col>
                         <Col lg='2'>
                             <br/>
-                            <Button type="submit" size='lg' className="mt-2" onClick={this.handleClick}>Submit</Button>
+                            <Button type="submit" size='lg' className="mt-2 btn-dark" onClick={this.handleClick}>Submit</Button>
                         </Col>
                     </Row>
                 </Form>
