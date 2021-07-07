@@ -1,3 +1,4 @@
+//ignore this, experimentation with formatting
 import StockRow from "../components/StockRow";
 
 <div className="col-md-5 mt-5">

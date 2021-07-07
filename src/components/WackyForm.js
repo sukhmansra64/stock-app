@@ -2,8 +2,11 @@ import React, { Component } from "react";
 import {Button, Col, Form, Row} from "react-bootstrap";
 import {autocompleteData} from "../Resources/autocompleteStuff";
 import StockRow from "./StockRow";
-
+//class component which renders a form and auto suggestions to allow you to find information on a stock you'd like to learn about
+//the auto suggestions provide basic day to day change on the stock and when clicked, they render the display component
 class WackyForm extends Component{
+    //defines booleans to confirm if the user is typing, an input, and an array for the data received from an API fetch
+    //the function then creates the autocomplete object and binds the callbacks to this component
     constructor(props) {
         super(props);
         this.state={
@@ -17,15 +20,17 @@ class WackyForm extends Component{
         this.applyInput=this.applyInput.bind(this);
         this.handleList=this.handleList.bind(this);
     }
+    //this function is a callback used by the API fetch to set the data to the state
     applyData(data){
         this.setState({
             data: data
         })
     }
+    //this function takes the callback entered into the props and makes a new function
     applyInput(ticker){
         this.props.callback(ticker);
     }
-
+    //this function changes the boolean values of the state to determine if the user is typing or not
     handleChange = (evt)=>{
         if(this.state.input.length<0){
             this.state.isTyping=false;
@@ -47,13 +52,16 @@ class WackyForm extends Component{
             this.setState({isTyping: false});
         }
     }
+    //this function takes the callback provided through the props and returns the input value when clicked
     handleClick = (button) =>{
         button.preventDefault();
         this.props.callback(this.state.input);
     }
+    //this function prevents the page from refreshing when a auto suggestion is clicked
     handleList=(button)=>{
         button.preventDefault();
     }
+    //renders the form and conditionally renders the autosuggestions
     render() {
         return(
             <div className="container-fluid" >

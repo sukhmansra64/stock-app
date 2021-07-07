@@ -1,6 +1,8 @@
 import {iexData} from "../iexSourceStuff/SourceData";
-
+//object used to search through stocks and return the fitting matches using IEXcloud
+//provided with a callback function and the input to set the appropriate matches and compare the input
 export class autocompleteData{
+    //function which takes the input and provides it to the API, then the API returns the matches and it is provided to the callback
     fetchData(callback,keywords) {
         const fetchFunction = async (callBack)=>{
             const response = await fetch(this.stockUrl(keywords));
@@ -9,9 +11,11 @@ export class autocompleteData{
         }
         fetchFunction(callback);
     }
+    //holds the url of the API and takes in the input
     stockUrl=(keywords)=>{
         return `https://cloud.iexapis.com/stable/search/${keywords}?token=${iexData.apiToken}`
     }
+    //not used
     filter(array, key, value){
         let i, j, filtered = [], item;
 

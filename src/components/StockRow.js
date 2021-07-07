@@ -1,9 +1,9 @@
 import React, {Component} from "react";
 import { stock } from '../Resources/stock';
-
-
-
+//this component renders a row which provides a clickable stock row which provides day to day information on the stock
+//to be used in the auto suggestion portion of the form
 class StockRow extends Component{
+    //the constructor function initializes a bunch of variables to provide information to from the API fetch
     constructor(props) {
         super(props);
         this.state ={
@@ -15,8 +15,8 @@ class StockRow extends Component{
             percentChange: null,
             exchange: null
         }
-
     }
+    //callback function which is provided to the API fetching object
     applyData(data){
         this.setState({
             price: data.price,
@@ -27,7 +27,7 @@ class StockRow extends Component{
             exchange: data.exchange
         })
     }
-
+    //function which provides styling to the html attribute depending on if the dollar change and percent change is positive or negative
     changeStyle(){
         if(this.state.dollarChange>0){
             return{color: '#4caf50',
@@ -45,6 +45,8 @@ class StockRow extends Component{
                 marginLeft: 5}
         }
     }
+    //makes the API fetch object and sets new functions to callbacks provided in the props
+    //then renders the stock row to be used in the autosuggestion function
     render(){
         let aStock = new stock(this.props.ticker,this.applyData.bind(this));
         let applyInput = this.props.callBack;

@@ -3,7 +3,11 @@ import { aVToken } from '../iexSourceStuff/AlphaVantage';
 import Plot from 'react-plotly.js';
 import {stock} from '../Resources/stock'
 import {Col, Row} from "react-bootstrap";
+//this class component renders information which has been received from API fetches
+//the component then renders a graph from Plotly.js
 class StockInfoDisplay extends Component{
+    //the constructor function defines arrays which hold the x and y values for the graph and data for the stock
+    //also receives data from API fetches and assigns them to the arrays using callbacks
     constructor(props) {
         super(props);
         this.state = {
@@ -14,11 +18,13 @@ class StockInfoDisplay extends Component{
         this.fetchStock(this.props.ticker);
         let aStock = new stock(this.props.ticker,this.applyData.bind(this));
     }
+    //callback which takes data from the API fetch and assigns data to the state
     applyData(data){
         this.setState({
             stockData: data
         })
     }
+    //this function provides style to an html component depending on whether the dollar and percent change went up or down
     changeStyle(){
         if(this.state.stockData.dollarChange>0){
             return{color: '#4caf50',
@@ -36,6 +42,7 @@ class StockInfoDisplay extends Component{
                 marginLeft: 5}
         }
     }
+    //API fetch for receiving data for the graph and then sets it to the arrays in state
     async fetchStock(ticker){
         const URL = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${ticker}&outputsize=full&apikey=${aVToken.apiToken}`
         const response = await fetch(URL);
@@ -51,9 +58,9 @@ class StockInfoDisplay extends Component{
             stockChartYValues: pushStockY
         })
     }
+    //renders the graph using Plotly and the stock data in a css grid form using bootstrap
     render() {
         return(
-
             <div className='container container-fluid'>
                 <div className='btn btn-dark' onClick={this.props.callback}>
                     Back
@@ -70,7 +77,7 @@ class StockInfoDisplay extends Component{
                                     marker: {color: 'black'},
                                 }
                             ]}
-                            layout={ {width: 720, height: 440, title: `${this.props.ticker} historical performance`} }
+                            layout={ {width: 720, height: 440, title: `${this.props.ticker.toUpperCase()} historical performance`} }
                         />
                     </Col>
                 </Row>
