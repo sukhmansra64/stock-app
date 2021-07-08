@@ -5,8 +5,8 @@ import MainPage from "./components/MainPage";
 function App() {
   return (
       <div className={'app'}>
-        <div className={'container'}>
-          <h1>Sukhman Sra's Stock App</h1>
+        <div className='container mt-3 text-light bg-dark' style={{width: '185px', height:'55px', borderRadius: '5px', marginLeft:'100px'}}>
+          <h1>STOCK.y</h1>
         </div>
           <MainPage/>
         </div>
