@@ -38,13 +38,23 @@ class MainPage extends Component{
                 {this.state.renderInfo && <br/>}
                 {this.state.renderForm && <WackyForm callback={this.afterInput}/>}
                 {this.state.renderInfo && <StockInfoDisplay ticker={this.state.ticker} callback={this.backButton}/>}
-                <footer style={{position:'absolute', bottom:'0', width:'100%',height:'100px', paddingTop:'40px'}}>
+                {this.state.renderForm&& <footer style={{position:'absolute', bottom:'0', width:'100%',height:'100px', paddingTop:'40px'}}>
                     <span>Made by Sukhman Sra</span>
                     <br/>
                     <span><a className='link-dark' href='https://www.linkedin.com/in/sukhsra/' target="_blank" rel="noopener noreferrer">LinkedIn</a></span>
                     <br/>
                     <span><a className='link-dark' href='https://github.com/sukhmansra64' target="_blank" rel="noopener noreferrer">GitHub</a></span>
-                </footer>
+                </footer>}
+                {this.state.renderInfo && <footer>
+                    <br/>
+                    <div className='container'>
+                        <span>Made by Sukhman Sra</span>
+                        <br/>
+                        <span><a className='link-dark' href='https://www.linkedin.com/in/sukhsra/' target="_blank" rel="noopener noreferrer">LinkedIn</a></span>
+                        <br/>
+                        <span><a className='link-dark' href='https://github.com/sukhmansra64' target="_blank" rel="noopener noreferrer">GitHub</a></span>
+                    </div>
+                   </footer>}
             </div>
         )
     }
