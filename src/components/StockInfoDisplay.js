@@ -96,7 +96,7 @@ class StockInfoDisplay extends Component{
                 <Row>
                     <Col lg='4'><b>Yesterday's close: </b>${this.state.stockData.yesterdayClose}</Col>
                     <Col lg='4'><b>Dollar change (since yesterday): </b><span style={this.changeStyle()}>${this.state.stockData.dollarChange}</span></Col>
-                    <Col lg='4'><b>Percent change (since yesterday): </b><span style={this.changeStyle()}>${this.state.stockData.percentChange}%</span></Col>
+                    <Col lg='4'><b>Percent change (since yesterday): </b><span style={this.changeStyle()}>{this.state.stockData.percentChange}%</span></Col>
                 </Row>
             </div>
         )

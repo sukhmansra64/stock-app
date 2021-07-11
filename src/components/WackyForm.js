@@ -69,8 +69,8 @@ class WackyForm extends Component{
                     <Row>
                         <Col lg='10'>
                             <Form.Group className="mb-3" controlId="formBasicText">
-                                <Form.Label><b>Enter a Stock:</b></Form.Label>
-                                <Form.Control type="text" size="lg" placeholder="Enter a Stock" onChange={this.handleChange}/>
+                                <Form.Label><b>Enter a stock's name to be assisted by autosuggestions, or submit a ticker directly:</b></Form.Label>
+                                <Form.Control type="text" size="lg" placeholder="Enter a ticker or stock name" onChange={this.handleChange}/>
                             </Form.Group>
                             <div className="col">
                                 {this.state.isTyping&&
